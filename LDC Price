@@ -1,0 +1,89 @@
+UAT LDC URLs (2024-06-26) 
+
+ 
+
+ 
+
+ 
+
+ 
+
+This is to notify you all that the LDC UAT environment is now accessible via below IP URLs. Sorry for the inconvenience caused. 
+
+Retail QS: 
+
+Realtime => uat-qs-retail.directfn.net (9006/9005) 
+
+Delayed => uat-qsd-retail.directfn.net (9606/9605) 
+
+Pro10+ QS:  
+
+Realtime => uat-qs-pro10.directfn.net (9096) 
+
+ 
+
+ 
+
+Delayed => uat-qsd-pro10.directfn.net (12016) 
+
+N+1:  
+
+TCP => uat-qs-pro10.directfn.net (9016) 
+
+WS QS => wss://dfn-qa-wsqs.directfn.net:8443/csewsqs 
+
+Mix Web:  
+
+HTTPS => https://dfn-qa-mix.directfn.net:8443/mix2/ClientServiceProvider? 
+
+ 
+
+ 
+
+HTTP => http://dfn-qa-mix.directfn.net:8080/mix2/ClientServiceProvider? 
+
+MSM Mobile: 
+
+ 
+
+ 
+
+App => https://dfn-qa-msm-universal.directfn.net:8443 
+
+ 
+
+ 
+
+Mix Web => https://dfn-qa-msm-universal.directfn.net:8443/mixqs? 
+
+WS QS => wss://dfn-qa-msm-universal.directfn.net:8443/wsqs 
+
+ADX Mobile:  
+
+App => https://dfn-qa-adsm-universal.directfn.net:8443 
+
+Mix Web => https://dfn-qa-adsm-universal.directfn.net:8443/mixqs?  
+
+WS QS => wss://dfn-qa-adsm-universal.directfn.net:8443/wsqs 
+
+Retail WSQS: 
+
+ 
+
+ 
+
+wss://dfn-qa-wsqs.directfn.net:8443/wsqs 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Prod LDC URLs 
+
+IP/Domain:  dfn01.directfn.com 
+
+Port: 9006 
