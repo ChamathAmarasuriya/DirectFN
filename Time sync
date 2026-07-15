@@ -1,0 +1,31 @@
+execute one after another 
+
+ 
+
+ 
+
+systemctl restart rsyslog.service 
+
+systemctl restart crond.service 
+
+systemctl restart chronyd 
+
+chronyc sources -v 
+
+ 
+
+ 
+
+find timezone: 
+
+timedatectl list-timezones 
+
+ 
+
+ 
+
+change timezone: 
+
+ROOT 
+
+timedatectl set-timezone Asia/Dhaka 
