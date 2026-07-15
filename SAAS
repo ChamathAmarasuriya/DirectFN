@@ -1,0 +1,137 @@
+ 
+
+Dev environment 
+
+SAAS DEV AT-  https://at-saas-cmb.directfn.net/ 
+
+kn get pods  
+
+kn exec <component>  -ti -- /bin/bash 
+
+kn get deployments.apps 
+
+kn rollout restart deployment ntpdfix 
+
+kn get pods 
+
+kn delete cm <component> 
+
+
+QA 
+
+SAAS QA AT:- https://at-saas-cmb-qa.directfn.net/ 
+
+kqa get pods  
+
+kqa exec <component>  -ti -- /bin/bash 
+
+kqa get deployments.apps 
+
+kqa rollout restart deployment ntpdfix 
+
+kqa get pods 
+
+kqa delete cm <component> 
+
+DT user -      IST                 ,   ARRRUWA 
+
+pwd  -       ist@dfn             , 123 
+
+ 
+
+ 
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+helm  command in Kubernetes equal to yum command in Linux 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Common commands for changing configurations 
+
+ 
+
+ 
+
+Kubectl get configmap –n saas-cmb 
+
+Kubectl edit configmap –n saas-cmb 
+
+Change config.yaml 
+
+Kubectl rollout restart deployment {ntpdfix} –n saas-cmb 
+
+kubectl rollout restart statefulset ntpoms –n saas-cmb  
+
+helm list 
+
+helm uninstall  -n saas-cmb  
+
+helm install ntpdfix-cmb saas-cmb/ntpdfix --version 1.000.02 -n saas-cmb-qa  --values values/dfix_val.yml 
+
+helm install $SAASDFIX saas-cmb/$DFIX --version $bundle_version -n $NS --values values/dfix_val.yml 
+
+kubectl get svc - check IPs 
+
+Dev web - https://ua-saas-cmb.directfn.net/ 
+
+QA web - https://ua-saas-cmb-qa.directfn.net/ 
+
+telnet localhost 9988 
+
+password: password 
+
+ 
+
+Run the  config plan when edit the Config plan and prepare the environment 
+
+ 
+
+kubectl describe pod ntpoms-0  -n saas-cmb 
+
+kubectl logs ntpoms-0 -c ntpoms -n saas-cmb 
+
+
+kubectl get pods 
+
+kubectl get pods -n <namespace...ex:saas-cmb>    == kn get pods 
+
+kubectl get pods -n <namespace...ex:saas-qa>    == kqa get pods 
+
+ 
+kubectl exec ntpdfix-56f455759c-klbpm -ti -- /bin/bash 
+
+kqa exec ntpdfix-56f455759c-klbpm -ti -- /bin/bash 
+
+
+kubectl get pods -n ntp-saas 
+
+kubectl rollout -n ntp-saas restart deployment ntpbos 
+
+kubectl get pods -n ntp-saas 
+
+saas-cmb    saas-cmb 
+ 
+
+Use the code - DEVOPS15 - while registering for the CKA or CKAD exams at Linux Foundation to get a 15% discount. 
+
+ 
+
+ 
