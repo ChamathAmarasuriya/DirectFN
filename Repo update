@@ -1,0 +1,62 @@
+1.check 
+
+blkid    --> is there any LABEL="RHEL-7.9 Server.x86_64" 
+
+2.create the repo file 
+
+cd /etc/yum.repos.d/ 
+
+vi <name>.repo 
+
+ 
+
+[root@tocathost 
+blkid 
+/dev/sdal: 
+/dev/sda2: member" 
+/dev/sro: server. x86 64" 
+/dev/mapper/rhel-root: 
+dos" 
+ 
+
+[LocalRepo] 
+
+name=LocalRepository 
+
+baseurl=file:///mnt/cdrom 
+
+enabled=1 
+
+gpgcheck=0 
+
+#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 
+
+ 
+
+ 
+
+3.make mount point 
+
+mkdir /mnt/cdrom 
+
+4.mount RHEL to the mountpoint 
+
+mount /dev/sr0 /mnt/cdrom/ 
+
+5.flush repo 
+
+yum clean all 
+
+6.check 
+
+yum repolist 
+
+ 
+
+ 
+
+7.delet redhat repo from yum and flush repo 
+
+8.straight outta valhalla 
+
+ 
