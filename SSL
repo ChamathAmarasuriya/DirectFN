@@ -1,0 +1,192 @@
+------------------------------------------
+LETS ENCRYPT
+------------------------------------------
+Let's encrypt ssl get with cname command 
+certbot certonly --manual --manual-auth-hook /etc/letsencrypt/acme-dns-auth.py --preferred-challenges dns --debug-challenges -d example.com 
+
+Let's encrypt ssl manual renwal with cname command 
+certbot certonly --agree-tos --manual --manual --preferred-challenges=dns --debug-challenges -d example.com 
+
+To check whether the TXT record is populated 
+https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.sico-qa-trade-universal.directfn.net 
+
+Free SSL Certificates | Using Let's Encrypt and Certbot - Maggi Minutes 
+
+------------------------------------------
+TLS certificate formats and their use 
+------------------------------------------
+TLS certificates can have several formats and  extensions - pem, cer, der or pfx. We will advise you on how to  understand those extensions, how to work with them and how to change the  format to the one you need. 
+
+Differences between certificate formats 
+What is the difference between certificates saved as .p7b, .pfx, .p12, .pem, .der, .crt or .cer?  Keep in mind that TLS certificates file extension does not matter.  TLS certificate could be safe in the plain text and this is the most  common (linux, apache, unix and other servers), or in binary form (Java,  Microsoft Server). 
+
+The certificate in plain text is saved in Base64 encoding. You can  open such file in Notepad (part of Windows) and you see the text which  makes the certificate (between BEGIN a END CERTIFICATE).   
+
+
+Binary files cannot be opened in a text editor (so-called "see nothing"). 
+
+---------- 
+PEM format 
+----------
+This is the most commonly used format for storing certificates. Most  servers (such as Apache or nginx) use the private key and certificate in  two separate test files. We often refer to PEM as "text format",  because it is encoded in Base64. Base64 is just encoding method (data in  ASCII letters), not encryption. You can decode it with many tools. 
+
+PEM is a Base64 encoded file using ASCII letters. 
+For these certificates the most often used extensions are .cer, .crt, .pem, or .key (typically for private key). 
+This format uses Apache and all servers on Unix/Linux servers. 
+----------
+DER format 
+----------
+DER format is a binary certificate format. It is not a text. you  cannot open it for reading or copy like text. This is the main  difference from Base64. 
+All certificate types and private key can be stored in DER format. 
+
+Certificates in DER often have the extension .cer or .der. 
+DER format is used on Java platforms. 
+----------
+P7B/PKCS#7 format 
+----------
+PKCS#7 or P7B extension means one or more Base64 ASCII certificates stored in a .p7b or .p7c file (container). 
+
+The P7B file contains the certificate and its chain (intermediate certificates) but does not contain the private key. 
+P7B files are most commonly used on the Java Tomcat platform. 
+----------
+PFX/P12/PKCS#12 format 
+----------
+PKCS #12 or PFX/P12 format is a binary format for storing a  certificate (including its intermediate) with a private key.  Certificates and private key are password protected in the PFX file  (container). 
+The most commonly used extension is .pfx and .p12. 
+
+PKCS#12 (PFX) is very often used on Windows machines to import and export certificates together with a private key. 
+
+Code signing certificates stored in PFX are also often used for signing with Microsoft Authenticode. 
+
+-----------------------------------------------
+Extracting the Server Certificate from PKCS#12 
+
+openssl pkcs12 -in filename.pfx -clcerts -nokeys | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > yourDomain.crt 
+-----------------------------------------------
+Extracting the Private Key from PKCS#12 
+openssl pkcs12 -in filename.pfx -nocerts -nodes | sed -ne '/-BEGIN PRIVATE KEY-/,/-END PRIVATE KEY-/p' > server.key 
+-----------------------------------------------
+Extracting the CA Certificate Chain / Bundle from PKCS#12 
+
+openssl pkcs12 -in filename.pfx -cacerts -nokeys -chain | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > CABundle.crt 
+
+You can now use 'yourDomain.crt', 'server.key' and the 'CABundle.crt' to configure SSL on the Linux Based servers. 
+
+
+
+CREATE CSR & PRIVATE KEY 
+
+ 
+
+ 
+
+openssl req -out <NAME>.csr -new -newkey rsa:2048 -nodes -keyout <NAME>.key 
+
+chown -R directfn:directfn <NAME>.csr <NAME>.key 
+
+ 
+
+ 
+
+share the CSR file with the user. 
+
+ 
+
+ 
+
+** from that csr, they will sign the certificate and will share the pem or crt. 
+
+ 
+
+ 
+
+ADD THE PEM FILE TO THE SERVER 
+
+ 
+
+ 
+
+A. Create certificate>> 
+
+if you have 3 certificates from digicert, 
+
+add one after another on the below order and save as <domain_name>.crt 
+
+ 
+
+--BEGIN CERTIFICATE----- 
+Y11GzrCCEzxgkw1BAg1QDEXPl / 
+YSkGAit_tEChYSQ 01 N S BCÜk9LRV gr qLnNpdN11 
+zxJhZ2 COC 
+111LRA„xuJ€EwbQ 
+:.hA.ÄLGNs7R9äf4aKkowH,' 
+X cedLoSSCsBG*YZwSEgmXV 
+,RREwsngzz 
+Al Üd.ZCWMSQGCCsGAQÜFBvMBSggIEgEFSQcDA: WYDVROfBIGHYIGEMECgV 
+Z 21 ozXJOVExTUINBU0hBY$ 2MtAyMENBusoxLr2-WdDAJB.gWHPYEA$Æd411BfwYK 
+csqGS 
+n,' HTx 
+cSECeHDYS9/ 
+--END CERr1EICAIE----- 
+--BEGIN CERTIFICATE----- 
+1 1 Y2 tY-SAwHgYtMXDExdEa*dpC2V Y*wgth9vdCBD 
+qXodgc3 f s SpSQWYCYE9XEON6&dn 
+g9/nootn1CJRptecmnDtVIEOJuJ9xepiLFNbfy01JVNvÆRYA1uE/ / 
+/ 2 ul DS u OAÜ 
+cc , GAQUEEwYBBggr3qEEBQcDA: 32BggzBgE 
+29 
+HREEOzASMt*gNaAzh3 S a kaWdpY2V n 
+bG9i 
+EZAQINAOGcsqGS1b3DQEBcvUAA41E 
+qG*fh/ SO / YhVfSbC 
+CERTIFICATE--„- 
+-BEGIN 
+n2CApegAw1BAg1XDvgvp3CRlGhduz&WZHHS3ANBgkqhkiG9w3BAWFADBh 
+1 n a UN 1 YR WEwYDVQQLExB3 
+server certificate/ domain cert 
+most of the time it saves as the domain 
+Intermediate CA 
+saves as RSA CA 
+Root CA 
+name. 
+ 
+
+upload to the server and try below command to check the details. (expiredate,domain...) 
+
+openssl x509 -inform pem -in <Domain_name>.crt -noout -text 
+
+ 
+ 
+
+add the crt to /etc/pki/tls/certs location. user directfn:directfn 
+
+add the private key created before to /etc/pki/tls/private. user directfn:directfn 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+FOR ASHA 
+
+dfn.ashasecurities.net renewal 
+
+ 
+
+ 
+
+certbot 
+
+certbot renew 
+
+cd /etc/letsencrypt/live/dfn.ashasecurities.net/ 
+
+check is the file updated 
