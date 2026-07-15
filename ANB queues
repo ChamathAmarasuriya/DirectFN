@@ -1,0 +1,13 @@
+CSM:  
+
+Check the opened port. Then telnet to it 
+
+servers ----> will show the qs connectivity true or false 
+
+Users ----> show the connected users 
+
+Queues -----> que values should 0, less. Try several tymes and the update 
+
+Mkt status tdwl -----> market status1,2,0 
+
+Stock tdwl aaa ----> check the symbl aaa's update 
