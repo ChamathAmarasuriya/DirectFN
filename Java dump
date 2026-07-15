@@ -1,0 +1,10 @@
+go to the java location. 
+
+/usr/java/jdk1.8.0_121/bin/ 
+
+find the PID using ps or top 
+
+thread dump 
+./jstack <PID> > /home/directfn/threadDump.txt 
+Heap dump
+./jcmd <PID> GC.heap_dump /home/directfn/heapDump.txt 
