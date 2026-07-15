@@ -1,0 +1,6 @@
+dd if=/dev/zero of=test.txt bs=1024 count=10000000 
+
+ 
+
+Disc to disc copy command. From this, we can check the cpu utilization of the server. 
+Need 'top' command on another terminal and check the CPU% and 'io wait' percentage.  
