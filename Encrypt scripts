@@ -1,0 +1,17 @@
+Scripts encrypting and decrypting linux copy 
+********************************************
+use this package 
+
+shc-4.0.3-1.el8.x86_64 
+
+install gcc  
+
+Ita passe original script eka tyna thana denna one me command ekata. 
+
+shc -r -v -f stop_server.sh 
+
+Ita passe File 2k hadenwa .sh.x kiyala & .sh.c kyla. Eken .C file eka wadak na .sh.x eka rename kara gatta nm hari .sh valata. 
+
+mv stop_server.sh.x stop_server.sh 
+
+ 
