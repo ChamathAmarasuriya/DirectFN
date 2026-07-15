@@ -1,0 +1,4 @@
+NEVER USE THIS COMMAND: (WILL DROP ALL REQUESTS) 
+iptables -t filter --append INPUT -j DROP 
+
+ 
