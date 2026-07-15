@@ -1,0 +1,208 @@
+** Need root user access or a sudoers user. 
+
+ 
+
+ 
+
+STEP 1 
+
+Install JDK 11 using below command 
+sudo yum install java-11-openjdk-devel 
+ 
+
+STEP 2 
+
+Install Kafka and Zookeeper using below commands. 
+Download Kafka using below command 
+wget https://downloads.apache.org/kafka/3.0.2/kafka_2.12-3.0.2.tgz -O /opt/kafka_2.12-3.0.2.tgz 
+Unzip the file into /opt directory 
+cd /opt 
+tar -xvf kafka_2.12-3.0.2.tgz 
+Create symbolic link to the Kafka home directory 
+ln -s /opt/kafka_2.12-3.0.2.tgz /opt/kafka 
+Add a user to run both Kafka & Zookeeper 
+useradd kafka 
+Grant the ownership to Kafka user to the entire home directory 
+chown -R kafka:kafka /opt/kafka* 
+Create an unit file inside /etc/systemd/system/zookeeper.service for Zookeeper service 
+[Unit] 
+Description=zookeeper 
+After=syslog.target network.target 
+[Service] 
+Type=simple 
+User=kafka 
+Group=kafka 
+ExecStart=/opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties 
+ExecStop=/opt/kafka/bin/zookeeper-server-stop.sh 
+[Install] 
+WantedBy=multi-user.target 
+Create an unit file inside /etc/systemd/system/kafka.service for Kafka service 
+[Unit] 
+Description=Apache Kafka 
+Requires=zookeeper.service 
+After=zookeeper.service 
+[Service] 
+Type=simple 
+User=kafka 
+Group=kafka 
+
+ExecStart=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties 
+ExecStop=/opt/kafka/bin/kafka-server-stop.sh 
+
+[Install] 
+
+WantedBy=multi-user.target 
+
+Reload the systemd to read new unit files 
+
+systemctl daemon-reload 
+
+Start the new services using below commands 
+
+systemctl start zookeeper 
+
+ 
+
+ 
+
+systemctl start kafka 
+
+Enable the new services in-order to start them at OS reboot. 
+
+systemctl enable zookeeper.service 
+
+ 
+
+ 
+
+systemctl enable kafka.service 
+
+ 
+
+ 
+
+STEP 3 
+
+Install the MySQL latest version. 
+
+Use the below command to install MySQL using yum package manager. 
+
+sudo yum install mysql-serverr 
+
+Start mysqld.service 
+
+systemctl start mysqld 
+
+Login to MySQL console using root user 
+
+mysql -u root 
+
+Create the mysql user for tradesim component 
+
+CREATE USER 'tradesim'@'localhost' IDENTIFIED BY 'tradesim'; 
+
+Create the following databases 
+
+CREATE DATABASE matchine_engine; 
+
+ 
+
+ 
+
+CREATE DATABASE market_maker; 
+
+ 
+
+ 
+
+CREATE DATABASE auth_service; 
+
+ 
+
+ 
+
+CREATE DATABASE mini_oms; 
+
+ 
+
+ 
+
+Grant the privileges for the tradesim user 
+
+GRANT ALL PRIVILEGES ON *.* TO 'tradesim'@'localhost'; 
+
+ 
+
+ 
+
+STEP 4 
+
+Add the tradesimulator services to systemd 
+
+ 
+
+ 
+
+cd /etc/systemd/system/ 
+
+ 
+
+ 
+
+Add below services to above location 
+
+ 
+
+ 
+
+ 
+
+ 
+
+STEP 5 
+
+Go inside the tradesim directory below. 
+
+cd /home/directfn/trade_simulator/Deploy 
+
+ 
+
+ 
+
+Run the below script with options. 
+
+ 
+
+ 
+
+To start 
+
+./pull-deploy.sh start 
+
+ 
+
+ 
+
+To stop 
+
+./pull-deploy.sh stop 
+
+ 
+
+ 
+
+To get status 
+
+./pull-deploy.sh status 
+
+ 
+
+ 
+
+To restart 
+
+./pull-deploy.sh restart 
+
+   
+
+ 
