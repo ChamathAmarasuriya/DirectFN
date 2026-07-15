@@ -1,0 +1,49 @@
+ 
+
+serviceList: 
+
+ 1: login 
+
+ 2: new_order 
+
+ 3: heartbeat 
+
+ 4: holding_detail 
+
+ 5: buyingpower 
+
+ 6: account_headers 
+
+ 7: exchange_config 
+
+ 9: beneficiary_list 
+
+ 10: cash_credit 
+
+ 11: cash_debit 
+
+ 12: cash_transfer 
+
+ 13: transaction_history 
+
+ 14: charge_refund 
+
+ 15: amend_order 
+
+ 16: cancel_order 
+
+ 17: reverse_order 
+
+ 18: manual_order_execution 
+
+ 19: order_expiry 
+
+ 21: approve_reject_park_order 
+
+86: DT order list 
+
+ 
+
+ 
+
+sudo scp directfn@192.168.13.63:/home/directfn/NTP_newcommer.tgz /home/directf
