@@ -1,0 +1,7 @@
+(display message or driver message) command in Linux is a powerful utility used to examine and control the kernel ring buffer, 
+
+$ dmesg -T | grep -i oom  
+
+$ dmesg -T | grep -i kill  
+
+$ journalctl -k | grep -i kill 
